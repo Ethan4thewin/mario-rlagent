@@ -1,0 +1,10 @@
+batch size 32 -> 128
+explore rate 0.1
+exploration_rate_decay = 0.99995 was 0.99999975
+gamma 0.95  Increased from 0.9 for longer-term rewards
+lr 0.00025 → 0.0005
+burnin 10000 -> 5000
+self.learn_every = 2  # More frequent updates (was 3)
+self.sync_every = 5000  # More frequent target network updates (was 1e4)
+
+self.memory = SimpleReplayBuffer(50000)  # Reduced from 100000 to focus on more recent experiences
