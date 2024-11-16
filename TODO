@@ -8,3 +8,31 @@ self.learn_every = 2  # More frequent updates (was 3)
 self.sync_every = 5000  # More frequent target network updates (was 1e4)
 
 self.memory = SimpleReplayBuffer(50000)  # Reduced from 100000 to focus on more recent experiences
+
+(torch-rl) D:\GitHub_Web\mario-rlagent>python play.py
+Starting Mario gameplay...
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:555: UserWarning: WARN: The environment SuperMarioBros-1-1-v0 is out of date. You should consider upgrading to version `v3`.
+  logger.warn(
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:627: UserWarning: WARN: The environment creator metadata doesn't include `render_modes`, contains: ['render.modes', 'video.frames_per_second']
+  logger.warn(
+Using device: cuda
+Successfully loaded model weights
+
+Starting Mario's Run
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\utils\passive_env_checker.py:233: DeprecationWarning: `np.bool8` is a deprecated alias for `np.bool_`.  (Deprecated NumPy 1.24)
+  if not isinstance(terminated, (bool, np.bool8)):
+Step:   20 | Position:  237 | Action: Walk Jump  | Q-values: [679.66345 675.93964 680.5308  681.6763  674.92126 679.6077 ]
+Step:   40 | Position:  434 | Action: Run Jump   | Q-values: [620.7821  620.81586 622.31195 613.2712  624.1288  613.4686 ]
+Step:   60 | Position:  625 | Action: Walk Jump  | Q-values: [586.7495  599.60443 599.5262  630.6916  617.35315 619.5505 ]
+Step:   80 | Position:  859 | Action: Run Jump   | Q-values: [801.89966 771.435   804.60504 773.10205 813.46185 798.76355]
+Step:  100 | Position:  898 | Action: Walk Jump  | Q-values: [312.4034  318.95627 296.32333 348.77982 333.28256 294.59906]
+Step:  120 | Position:  898 | Action: Walk Jump  | Q-values: [238.55315 253.1237  232.00363 281.84332 262.52975 233.09276]
+
+Run Complete!
+Total steps: 134
+Final reward: 817.0
+Final x position: 898
+
+Final statistics:
+Average speed: 6.70 pixels/step
+Gameplay finished.

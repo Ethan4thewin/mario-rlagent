@@ -9,7 +9,113 @@ from torch import nn
 from torchvision import transforms as T
 import numpy as np
 import time
-import random
+import sys
+import traceback
+
+# Capture screen
+import cv2
+import win32gui
+from PIL import ImageGrab
+import cv2
+
+def diagnose_window(window_name="SuperMarioBros-1-1-v0"):
+    hwnd = win32gui.FindWindow(None, window_name)
+    if hwnd:
+        print("\nWindow Diagnostics:")
+        print(f"Window Handle: {hwnd}")
+        
+        # Get window properties
+        rect = win32gui.GetWindowRect(hwnd)
+        print(f"Window Rect: {rect}")
+        
+        client_rect = win32gui.GetClientRect(hwnd)
+        print(f"Client Rect: {client_rect}")
+        
+        # Get window style
+        style = win32gui.GetWindowLong(hwnd, win32con.GWL_STYLE)
+        print(f"Window Style: {hex(style)}")
+        
+        # Get extended style
+        ex_style = win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE)
+        print(f"Extended Style: {hex(ex_style)}")
+        
+        # Get window class name
+        class_name = win32gui.GetClassName(hwnd)
+        print(f"Window Class: {class_name}")
+    else:
+        print("Window not found")
+
+# Helper function to capture the game window
+def capture_game_window(window_name="SuperMarioBros-1-1-v0"):
+    """Capture the game window using PIL's ImageGrab."""
+    try:
+        # Find window by exact name
+        hwnd = win32gui.FindWindow(None, window_name)
+        
+        if not hwnd:
+            print(f"Could not find window: {window_name}")
+            return None
+
+        # Get window rectangle
+        rect = win32gui.GetWindowRect(hwnd)
+        left, top, right, bottom = rect
+        width = right - left
+        height = bottom - top
+
+        print(f"Attempting to capture window region: {rect}")
+
+        # Get client area dimensions
+        client_rect = win32gui.GetClientRect(hwnd)
+        client_width = client_rect[2] - client_rect[0]
+        client_height = client_rect[3] - client_rect[1]
+        
+        # Calculate borders
+        border_x = (width - client_width) // 2
+        border_y = height - client_height - border_x
+
+        print(f"Window dimensions: {width}x{height}")
+        print(f"Client dimensions: {client_width}x{client_height}")
+        print(f"Borders: x={border_x}, y={border_y}")
+
+        try:
+            # Capture the entire window area
+            screenshot = ImageGrab.grab(bbox=(left, top, right, bottom))
+            
+            # Convert PIL image to numpy array
+            frame = np.array(screenshot)
+            
+            # Convert RGB to BGR (for OpenCV compatibility)
+            frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+
+            # Save debug capture of full window
+            debug_dir = Path("debug_captures")
+            debug_dir.mkdir(exist_ok=True)
+            timestamp = time.strftime("%Y%m%d_%H%M%S")
+            
+            cv2.imwrite(str(debug_dir / f"full_capture_{timestamp}.png"), frame)
+            print("Saved full window capture")
+
+            # Crop to client area
+            cropped = frame[border_y:border_y + client_height, 
+                          border_x:border_x + client_width]
+            
+            # Save cropped debug capture
+            cv2.imwrite(str(debug_dir / f"cropped_capture_{timestamp}.png"), cropped)
+            print("Saved cropped capture")
+
+            return cropped
+
+        except Exception as e:
+            print(f"Error during capture: {e}")
+            import traceback
+            traceback.print_exc()
+            return None
+
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        import traceback
+        traceback.print_exc()
+        return None
 
 class SkipFrame(gym.Wrapper):
     def __init__(self, env, skip):
@@ -103,9 +209,14 @@ class MarioNet(nn.Module):
         )
 
 def play_trained_mario(checkpoint_path, episodes=1):
+    # Define the expanded action space
     MOVEMENT_OPTIONS = [
+        ["NOOP"],
         ["right"],
-        ["right", "A"]
+        ["right", "B"],
+        ["right", "A"],
+        ["right", "A", "B"],
+        ["B"]
     ]
     
     # Set up environment
@@ -115,7 +226,7 @@ def play_trained_mario(checkpoint_path, episodes=1):
         apply_api_compatibility=True
     )
     
-    # Configure environment with action options
+    # Configure environment
     env = JoypadSpace(env, MOVEMENT_OPTIONS)
     env = SkipFrame(env, skip=4)
     env = GrayScaleObservation(env)
@@ -141,34 +252,102 @@ def play_trained_mario(checkpoint_path, episodes=1):
 
     model.eval()
 
-    try:
-        # Since the model always does the same thing, we can just do one good run
-        print("\nStarting Mario's Run")
-        state = env.reset()
-        if isinstance(state, tuple):
-            state = state[0]
+    # Initialize state and give the window time to appear
+    print("\nStarting Mario's Run")
+    state = env.reset()
+    if isinstance(state, tuple):
+        state = state[0]
+    
+    # Wait longer for the window to appear and render
+    print("Waiting for game window to initialize...")
+    for i in range(5):
+        print(f"Initialization attempt {i+1}/5...")
+        time.sleep(1)
+        if win32gui.FindWindow(None, "SuperMarioBros-1-1-v0"):
+            print("Window found!")
+            time.sleep(1)
+            break
+
+    # Initialize video capture
+    video_writer = None
+    print("\nInitializing video capture...")
+    
+    # Try to capture frame multiple times
+    for i in range(5):
+        print(f"\nCapture attempt {i+1}/5...")
+        test_frame = capture_game_window()
+        if test_frame is not None:
+            print("Successfully captured frame!")
+            break
+        print("Waiting before next attempt...")
+        time.sleep(1)
+
+    if test_frame is not None:
+        height, width = test_frame.shape[:2]
+        print(f"Captured frame dimensions: {width}x{height}")
         
+        # Create output directory if it doesn't exist
+        output_dir = Path("gameplay_videos")
+        output_dir.mkdir(exist_ok=True)
+        
+        # Save test frame for verification
+        cv2.imwrite(str(output_dir / "test_capture.png"), test_frame)
+        print(f"Saved test capture")
+        
+        # Create video writer with unique timestamp
+        timestamp = time.strftime("%Y%m%d_%H%M%S")
+        video_path = output_dir / f"mario_gameplay_{timestamp}.mp4"
+        
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        video_writer = cv2.VideoWriter(
+            str(video_path),
+            fourcc, 
+            30.0,
+            (width, height)
+        )
+        
+        if video_writer.isOpened():
+            print(f"Successfully initialized video recording to: {video_path}")
+        else:
+            print("Failed to initialize video writer")
+            video_writer = None
+    else:
+        print("Failed to capture game window after multiple attempts")
+        video_writer = None
+
+    try:
         total_reward = 0
         done = False
         steps = 0
-        stuck_counter = 0
-        last_x_pos = 0
+        frames_written = 0
+        
+        # Dictionary to map action indices to descriptions
+        action_names = {
+            0: "NOOP",
+            1: "Walk Right",
+            2: "Run Right",
+            3: "Walk Jump",
+            4: "Run Jump",
+            5: "Charge Run"
+        }
         
         while not done:
+            # Get model's action prediction
             state_t = state[0].__array__() if isinstance(state, tuple) else state.__array__()
             state_t = torch.tensor(state_t, device=device).unsqueeze(0)
 
+            # Capture and save frame
+            if video_writer is not None:
+                frame = capture_game_window()
+                if frame is not None:
+                    video_writer.write(frame)
+                    frames_written += 1
+                    if frames_written % 100 == 0:
+                        print(f"Frames written: {frames_written}")
+
             with torch.no_grad():
                 action_values = model(state_t, model="online")
-                # For 2 actions, we'll sometimes randomly pick between them if they're close in value
-                top_action = torch.argmax(action_values, dim=1).item()
-                second_best = 1 - top_action  # Since we only have 2 actions (0 or 1)
-                
-                # If the actions are close in value, randomly choose between them
-                if abs(action_values[0][top_action] - action_values[0][second_best]) < 5.0:
-                    action_idx = random.choice([top_action, second_best])
-                else:
-                    action_idx = top_action
+                action_idx = torch.argmax(action_values, axis=1).item()
 
             step_result = env.step(action_idx)
             
@@ -178,49 +357,39 @@ def play_trained_mario(checkpoint_path, episodes=1):
             else:
                 next_state, reward, done, info = step_result
             
-            # Get Mario's x position
-            current_x_pos = info.get('x_pos', 0)
-            
-            # Check if Mario is stuck
-            if abs(current_x_pos - last_x_pos) < 1:
-                stuck_counter += 1
-            else:
-                stuck_counter = 0
-            
-            # If Mario is stuck for too long, try a different action
-            if stuck_counter > 20:
-                action_idx = random.randint(0, action_dim - 1)
-                stuck_counter = 0
-            
-            last_x_pos = current_x_pos
             total_reward += reward
             state = next_state
             steps += 1
             
-            # Print progress
-            if steps % 100 == 0:
-                print(f'Steps: {steps}, X Position: {current_x_pos}, Reward: {total_reward}')
+            if steps % 20 == 0:
+                print(f'Step: {steps:4d} | Position: {info["x_pos"]:4d} | ' \
+                      f'Action: {action_names[action_idx]:10s} | ' \
+                      f'Q-values: {action_values[0].cpu().numpy()}')
             
             if done or info.get('flag_get', False):
-                print(f'\nRun finished!')
+                print(f'\nRun Complete!')
                 print(f'Total steps: {steps}')
                 print(f'Final reward: {total_reward}')
-                print(f'Final x position: {current_x_pos}')
+                print(f'Final x position: {info["x_pos"]}')
                 if info.get('flag_get', False):
                     print('Mario reached the flag!')
                 elif info.get('life', 2) < 2:
                     print('Mario lost a life')
+                print("\nFinal statistics:")
+                print(f'Average speed: {info["x_pos"] / steps:.2f} pixels/step')
                 break
             
     except Exception as e:
         print(f"Error during gameplay: {e}")
+        traceback.print_exc()
     finally:
-        # Add a delay before closing
-        time.sleep(2)
+        if video_writer is not None:
+            video_writer.release()
+            print(f"\nVideo saved with {frames_written} frames")
         env.close()
 
 if __name__ == "__main__":
     print("Starting Mario gameplay...")
-    model_path = "trained_mario.chkpt"
+    model_path = "continued_training_mario.chkpt"
     play_trained_mario(model_path, episodes=1)
     print("Gameplay finished.")
