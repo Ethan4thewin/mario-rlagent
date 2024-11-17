@@ -18,6 +18,7 @@ import win32gui
 from PIL import ImageGrab
 import cv2
 
+# Helper function to give window's properties
 def diagnose_window(window_name="SuperMarioBros-1-1-v0"):
     hwnd = win32gui.FindWindow(None, window_name)
     if hwnd:
@@ -62,8 +63,6 @@ def capture_game_window(window_name="SuperMarioBros-1-1-v0"):
         width = right - left
         height = bottom - top
 
-        print(f"Attempting to capture window region: {rect}")
-
         # Get client area dimensions
         client_rect = win32gui.GetClientRect(hwnd)
         client_width = client_rect[2] - client_rect[0]
@@ -72,10 +71,6 @@ def capture_game_window(window_name="SuperMarioBros-1-1-v0"):
         # Calculate borders
         border_x = (width - client_width) // 2
         border_y = height - client_height - border_x
-
-        print(f"Window dimensions: {width}x{height}")
-        print(f"Client dimensions: {client_width}x{client_height}")
-        print(f"Borders: x={border_x}, y={border_y}")
 
         try:
             # Capture the entire window area
@@ -87,34 +82,18 @@ def capture_game_window(window_name="SuperMarioBros-1-1-v0"):
             # Convert RGB to BGR (for OpenCV compatibility)
             frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
-            # Save debug capture of full window
-            debug_dir = Path("debug_captures")
-            debug_dir.mkdir(exist_ok=True)
-            timestamp = time.strftime("%Y%m%d_%H%M%S")
-            
-            cv2.imwrite(str(debug_dir / f"full_capture_{timestamp}.png"), frame)
-            print("Saved full window capture")
-
             # Crop to client area
             cropped = frame[border_y:border_y + client_height, 
                           border_x:border_x + client_width]
-            
-            # Save cropped debug capture
-            cv2.imwrite(str(debug_dir / f"cropped_capture_{timestamp}.png"), cropped)
-            print("Saved cropped capture")
 
             return cropped
 
         except Exception as e:
             print(f"Error during capture: {e}")
-            import traceback
-            traceback.print_exc()
             return None
 
     except Exception as e:
         print(f"Unexpected error: {e}")
-        import traceback
-        traceback.print_exc()
         return None
 
 class SkipFrame(gym.Wrapper):
@@ -274,12 +253,9 @@ def play_trained_mario(checkpoint_path, episodes=1):
     
     # Try to capture frame multiple times
     for i in range(5):
-        print(f"\nCapture attempt {i+1}/5...")
         test_frame = capture_game_window()
         if test_frame is not None:
-            print("Successfully captured frame!")
             break
-        print("Waiting before next attempt...")
         time.sleep(1)
 
     if test_frame is not None:
@@ -289,10 +265,6 @@ def play_trained_mario(checkpoint_path, episodes=1):
         # Create output directory if it doesn't exist
         output_dir = Path("gameplay_videos")
         output_dir.mkdir(exist_ok=True)
-        
-        # Save test frame for verification
-        cv2.imwrite(str(output_dir / "test_capture.png"), test_frame)
-        print(f"Saved test capture")
         
         # Create video writer with unique timestamp
         timestamp = time.strftime("%Y%m%d_%H%M%S")
@@ -390,6 +362,6 @@ def play_trained_mario(checkpoint_path, episodes=1):
 
 if __name__ == "__main__":
     print("Starting Mario gameplay...")
-    model_path = "continued_training_mario.chkpt"
+    model_path = "models/continued_training_mario.chkpt"
     play_trained_mario(model_path, episodes=1)
     print("Gameplay finished.")

@@ -1,0 +1,312 @@
+(torch-rl) D:\GitHub_Web\mario-rlagent>python play.py
+Starting Mario gameplay...
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:555: UserWarning: WARN: The environment SuperMarioBros-1-1-v0 is out of date. You should consider upgrading to version `v3`.
+  logger.warn(
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:627: UserWarning: WARN: The environment creator metadata doesn't include `render_modes`, contains: ['render.modes', 'video.frames_per_second']
+  logger.warn(
+Using device: cuda
+Error loading model: Error(s) in loading state_dict for MarioNet:
+        size mismatch for online.9.weight: copying a param with shape torch.Size([2, 512]) from checkpoint, the shape in current model is torch.Size([6, 512]).
+        size mismatch for online.9.bias: copying a param with shape torch.Size([2]) from checkpoint, the shape in current model is torch.Size([6]).
+        size mismatch for target.9.weight: copying a param with shape torch.Size([2, 512]) from checkpoint, the shape in current model is torch.Size([6, 512]).
+        size mismatch for target.9.bias: copying a param with shape torch.Size([2]) from checkpoint, the shape in current model is torch.Size([6]).
+Gameplay finished.
+
+(torch-rl) D:\GitHub_Web\mario-rlagent>python play.py
+Starting Mario gameplay...
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:555: UserWarning: WARN: The environment SuperMarioBros-1-1-v0 is out of date. You should consider upgrading to version `v3`.
+  logger.warn(
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:627: UserWarning: WARN: The environment creator metadata doesn't include `render_modes`, contains: ['render.modes', 'video.frames_per_second']
+  logger.warn(
+Using device: cuda
+Successfully loaded model weights
+
+Starting Mario's Run
+Waiting for game window to initialize...
+Initialization attempt 1/5...
+Window found!
+
+Initializing video capture...
+Captured frame dimensions: 256x240
+Successfully initialized video recording to: gameplay_videos\mario_gameplay_20241117_135729.mp4
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\utils\passive_env_checker.py:233: DeprecationWarning: `np.bool8` is a deprecated alias for `np.bool_`.  (Deprecated NumPy 1.24)
+  if not isinstance(terminated, (bool, np.bool8)):
+Step:   20 | Position:  237 | Action: Run Jump   | Q-values: [513.7884  492.9475  505.4367  507.00958 516.4431  509.27994]
+Step:   40 | Position:  394 | Action: Walk Jump  | Q-values: [450.8081  465.8729  473.02957 473.92413 463.74268 456.6663 ]
+Step:   60 | Position:  590 | Action: Run Right  | Q-values: [519.7871  529.104   548.5537  521.1655  504.29105 513.35675]
+Step:   80 | Position:  722 | Action: Run Jump   | Q-values: [438.79614 440.7865  438.3771  437.26376 448.31625 440.80505]
+Frames written: 100
+Step:  100 | Position:  722 | Action: Run Jump   | Q-values: [331.10303 338.4479  340.3789  340.25153 360.82837 346.27045]
+Step:  120 | Position:  722 | Action: Run Jump   | Q-values: [330.98978 348.47147 341.12146 342.69537 363.24362 347.0773 ]
+Step:  140 | Position:  722 | Action: Run Jump   | Q-values: [337.58945 352.61426 345.8041  352.69733 370.30826 353.95648]
+Step:  160 | Position:  722 | Action: Run Jump   | Q-values: [336.44696 349.77682 340.82278 345.9625  366.8222  350.70862]
+Step:  180 | Position:  722 | Action: Run Jump   | Q-values: [330.66074 333.66925 336.6707  330.67398 352.0466  339.7638 ]
+Frames written: 200
+Step:  200 | Position:  722 | Action: Run Jump   | Q-values: [314.80353 323.23807 321.8748  328.82315 351.98502 332.62643]
+Step:  220 | Position:  722 | Action: Run Jump   | Q-values: [350.33838 366.3491  357.92108 362.5583  382.55405 365.10654]
+Step:  240 | Position:  722 | Action: Run Jump   | Q-values: [327.04752 340.96585 337.03412 341.8559  359.9452  344.6105 ]
+Step:  260 | Position:  722 | Action: Run Jump   | Q-values: [329.9026  343.53363 334.90057 340.31314 361.37747 344.1855 ]
+Step:  280 | Position:  722 | Action: Run Jump   | Q-values: [334.75677 340.4643  340.87552 341.75854 359.5635  344.38916]
+Frames written: 300
+Step:  300 | Position:  722 | Action: Run Jump   | Q-values: [302.7512  307.19147 311.7511  301.00766 331.77515 316.4929 ]
+Step:  320 | Position:  722 | Action: Run Jump   | Q-values: [345.34995 361.5104  353.5422  359.50803 379.5159  361.43204]
+Step:  340 | Position:  722 | Action: Run Jump   | Q-values: [338.8876  353.35822 346.29846 352.6426  370.25284 355.04147]
+Step:  360 | Position:  722 | Action: Run Jump   | Q-values: [319.3868  332.24088 327.8218  332.61185 352.69482 337.12302]
+Step:  380 | Position:  722 | Action: Run Jump   | Q-values: [334.3728  339.83597 339.96436 340.4374  359.46024 344.6337 ]
+Frames written: 400
+Step:  400 | Position:  722 | Action: Run Jump   | Q-values: [305.02    311.11786 312.15674 321.59277 339.79025 323.1353 ]
+Step:  420 | Position:  722 | Action: Run Jump   | Q-values: [336.0319  352.56638 346.91812 351.7349  370.31342 353.32016]
+Step:  440 | Position:  722 | Action: Run Jump   | Q-values: [333.77496 348.64923 341.9283  348.92355 366.77017 350.19226]
+Step:  460 | Position:  722 | Action: Run Jump   | Q-values: [334.49854 349.15952 341.8632  347.99036 366.94965 351.14627]
+Step:  480 | Position:  722 | Action: Run Jump   | Q-values: [326.0805  331.98865 331.22372 324.7611  349.27966 338.80646]
+Frames written: 500
+Step:  500 | Position:  722 | Action: Run Jump   | Q-values: [303.5426  316.35114 315.06122 310.96143 337.51727 319.87973]
+Step:  520 | Position:  722 | Action: Run Jump   | Q-values: [351.85153 367.2172  359.7646  366.52316 383.87653 368.05338]
+Step:  540 | Position:  722 | Action: Run Jump   | Q-values: [324.15216 338.05728 334.1418  339.2587  357.28522 341.87186]
+Step:  560 | Position:  722 | Action: Run Jump   | Q-values: [328.36987 342.8041  335.17563 342.31708 361.61053 344.17032]
+Step:  580 | Position:  722 | Action: Run Jump   | Q-values: [332.34766 342.02115 338.2593  342.0238  359.49786 345.30347]
+Frames written: 600
+Step:  600 | Position:  722 | Action: Run Jump   | Q-values: [320.49304 317.88284 322.32858 328.27728 349.25885 336.47565]
+Step:  620 | Position:  722 | Action: Run Jump   | Q-values: [342.19794 357.30267 350.711   358.16388 375.75543 359.29178]
+Step:  640 | Position:  722 | Action: Run Jump   | Q-values: [341.1933  355.97098 348.81717 355.41574 372.74472 357.4718 ]
+Step:  660 | Position:  722 | Action: Run Jump   | Q-values: [319.238   333.6003  329.12802 334.90356 353.91144 337.64862]
+Step:  680 | Position:  722 | Action: Run Jump   | Q-values: [325.1187  335.5511  332.38907 338.0267  355.65753 340.1717 ]
+Frames written: 700
+Step:  700 | Position:  722 | Action: Run Jump   | Q-values: [325.6463  326.18307 326.14157 335.29474 354.12656 340.32108]
+Step:  720 | Position:  722 | Action: Run Jump   | Q-values: [330.59155 344.64893 340.39954 345.4123  363.86163 348.37704]
+Step:  740 | Position:  722 | Action: Run Jump   | Q-values: [334.86172 349.87103 342.56918 349.71094 367.07706 350.8597 ]
+Step:  760 | Position:  722 | Action: Run Jump   | Q-values: [334.58377 349.2844  342.30737 349.31677 367.21262 351.4711 ]
+Step:  780 | Position:  722 | Action: Run Jump   | Q-values: [318.47662 324.47852 324.61893 324.04196 347.48428 333.69876]
+Frames written: 800
+Step:  800 | Position:  722 | Action: Run Jump   | Q-values: [334.17874 338.3929  336.92587 338.20587 360.02158 345.67563]
+Step:  820 | Position:  722 | Action: Run Jump   | Q-values: [340.48648 353.70346 346.47403 352.59265 371.77628 356.05975]
+Step:  840 | Position:  722 | Action: Run Jump   | Q-values: [324.20612 338.10742 334.13986 339.00146 357.30286 341.77045]
+Step:  860 | Position:  722 | Action: Run Jump   | Q-values: [333.00723 347.87436 340.91583 348.669   366.5257  349.89633]
+Step:  880 | Position:  722 | Action: Run Jump   | Q-values: [327.61694 336.0406  334.66946 343.54865 359.18796 342.6575 ]
+Frames written: 900
+Step:  900 | Position:  722 | Action: Run Jump   | Q-values: [328.36014 326.36877 327.98718 322.94156 347.74927 339.56442]
+Step:  920 | Position:  722 | Action: Run Jump   | Q-values: [335.07968 348.3974  341.2726  347.77032 367.74173 350.22525]
+Step:  940 | Position:  722 | Action: Run Jump   | Q-values: [337.41287 352.16522 344.96335 351.50946 369.1805  353.62747]
+Step:  960 | Position:  722 | Action: Run Jump   | Q-values: [330.56888 346.05878 340.76422 346.02658 363.8788  348.54004]
+Step:  980 | Position:  722 | Action: Run Jump   | Q-values: [321.999   334.20084 331.84183 335.11432 354.88272 337.33408]
+Frames written: 1000
+Step: 1000 | Position:  722 | Action: Run Jump   | Q-values: [333.74313 334.8917  336.5918  341.21548 357.63785 343.36197]
+Step: 1020 | Position:  722 | Action: Run Jump   | Q-values: [327.16028 338.10385 334.93152 339.09714 359.2068  343.6722 ]
+Step: 1040 | Position:  722 | Action: Run Jump   | Q-values: [332.06583 346.79428 339.98386 347.13156 364.9777  348.6063 ]
+Step: 1060 | Position:  722 | Action: Run Jump   | Q-values: [347.2948  362.05417 354.59372 360.9458  378.09796 363.5956 ]
+Step: 1080 | Position:  722 | Action: Run Jump   | Q-values: [323.73102 329.29645 331.88354 327.81042 350.8897  337.55786]
+Frames written: 1100
+Step: 1100 | Position:  722 | Action: Run Jump   | Q-values: [333.23788 340.38635 339.23865 337.00247 358.8206  344.4206 ]
+Step: 1120 | Position:  722 | Action: Run Jump   | Q-values: [346.31387 357.65793 350.7004  354.96347 375.6074  359.64365]
+Step: 1140 | Position:  722 | Action: Run Jump   | Q-values: [326.16965 339.9098  336.27383 341.04617 359.40268 343.91473]
+Step: 1160 | Position:  722 | Action: Run Jump   | Q-values: [341.2783  356.76825 349.66922 357.01883 374.20425 358.46936]
+Step: 1180 | Position:  722 | Action: Run Jump   | Q-values: [321.1545  328.2368  330.87842 336.41107 352.47858 336.6648 ]
+Frames written: 1200
+Step: 1200 | Position:  722 | Action: Run Jump   | Q-values: [331.73077 336.43164 338.1947  331.8669  353.82416 342.69302]
+Step: 1220 | Position:  722 | Action: Run Jump   | Q-values: [339.71484 350.95245 343.82898 348.07327 369.10052 352.12894]
+Step: 1240 | Position:  722 | Action: Run Jump   | Q-values: [338.46964 352.72433 345.84128 352.23865 369.86182 354.66592]
+Step: 1260 | Position:  722 | Action: Run Jump   | Q-values: [331.19614 347.67325 341.79752 346.87634 364.72733 348.82706]
+Step: 1280 | Position:  722 | Action: Run Jump   | Q-values: [316.68912 330.4008  331.2496  342.66852 355.16107 334.21112]
+Frames written: 1300
+Step: 1300 | Position:  722 | Action: Run Jump   | Q-values: [341.40137 349.33868 348.2561  343.97644 363.8718  352.12527]
+Step: 1320 | Position:  722 | Action: Run Jump   | Q-values: [327.55365 337.6806  334.86096 338.37732 358.89883 343.5594 ]
+Step: 1340 | Position:  722 | Action: Run Jump   | Q-values: [331.7735  346.3077  339.59253 346.7139  364.6142  348.26804]
+Step: 1360 | Position:  722 | Action: Run Jump   | Q-values: [348.5636  364.55847 356.25345 362.1763  380.0336  364.01816]
+Step: 1380 | Position:  722 | Action: Run Jump   | Q-values: [321.6802  327.72903 333.64648 330.28754 350.59656 336.0237 ]
+Frames written: 1400
+Step: 1400 | Position:  722 | Action: Run Jump   | Q-values: [338.82382 351.99014 345.93945 337.74625 359.03568 351.69086]
+Step: 1420 | Position:  722 | Action: Run Jump   | Q-values: [341.02814 352.76205 345.59586 350.37997 370.37042 354.68262]
+Step: 1440 | Position:  722 | Action: Run Jump   | Q-values: [322.86624 336.5412  332.85153 337.61322 356.2838  340.5833 ]
+Step: 1460 | Position:  722 | Action: Run Jump   | Q-values: [341.6556  358.08984 350.27304 356.89392 375.5648  358.70456]
+Step: 1480 | Position:  722 | Action: Run Jump   | Q-values: [334.5344  347.8538  349.9119  342.47733 363.54987 343.98032]
+Frames written: 1500
+Step: 1500 | Position:  722 | Action: Run Jump   | Q-values: [336.91397 347.5479  344.45926 332.03223 356.7283  350.93027]
+Step: 1520 | Position:  722 | Action: Run Jump   | Q-values: [334.37286 346.31396 339.04086 344.52707 364.06042 347.96506]
+Step: 1540 | Position:  722 | Action: Run Jump   | Q-values: [333.39627 348.1545  340.78333 347.58746 365.0978  349.8314 ]
+Step: 1560 | Position:  722 | Action: Run Jump   | Q-values: [323.89655 340.21185 334.0529  337.88217 357.6116  341.10858]
+Step: 1580 | Position:  722 | Action: Run Jump   | Q-values: [329.60675 343.74557 338.65176 345.3203  366.4948  342.87378]
+Frames written: 1600
+Step: 1600 | Position:  722 | Action: Run Jump   | Q-values: [339.51685 355.17828 347.54407 350.1092  366.65884 356.14407]
+Step: 1620 | Position:  722 | Action: Run Jump   | Q-values: [326.5891  340.87082 337.08408 340.62    359.12473 343.82703]
+Step: 1640 | Position:  722 | Action: Run Jump   | Q-values: [331.20544 346.03632 339.28033 346.2633  364.09564 347.97925]
+Step: 1660 | Position:  722 | Action: Run Jump   | Q-values: [332.0126  348.40552 340.40707 346.04852 365.19955 348.17093]
+Step: 1680 | Position:  722 | Action: Run Jump   | Q-values: [341.48416 341.1347  339.90427 337.89307 365.61658 353.13068]
+Frames written: 1700
+Step: 1700 | Position:  722 | Action: Run Jump   | Q-values: [334.9734  350.25977 342.55023 346.13373 363.0609  352.1599 ]
+Step: 1720 | Position:  722 | Action: Run Jump   | Q-values: [338.93323 353.67297 346.58173 352.58835 369.63797 354.93295]
+Step: 1740 | Position:  722 | Action: Run Jump   | Q-values: [323.4351  337.7306  333.2094  337.90167 356.13898 340.9868 ]
+Step: 1760 | Position:  722 | Action: Run Jump   | Q-values: [318.64178 335.02982 327.5592  333.07422 353.04187 335.53784]
+Step: 1780 | Position:  722 | Action: Run Jump   | Q-values: [344.4536  349.89227 343.52228 349.00208 371.53134 357.19156]
+Frames written: 1800
+Step: 1800 | Position:  722 | Action: Run Jump   | Q-values: [325.32953 341.6195  335.4327  332.45694 351.90128 344.21356]
+Step: 1820 | Position:  722 | Action: Run Jump   | Q-values: [329.1228  344.93045 337.93036 344.19046 361.26944 345.7941 ]
+Step: 1840 | Position:  722 | Action: Run Jump   | Q-values: [334.80746 349.7019  342.22882 348.94568 366.4892  351.1783 ]
+Step: 1860 | Position:  722 | Action: Run Jump   | Q-values: [307.21008 323.1261  317.50497 320.18073 341.59018 325.0874 ]
+Step: 1880 | Position:  722 | Action: Run Jump   | Q-values: [358.56888 371.27866 366.5917  372.7376  393.807   371.0786 ]
+Frames written: 1900
+Step: 1900 | Position:  722 | Action: Run Jump   | Q-values: [341.11755 357.66214 350.88138 359.23032 372.91235 359.60736]
+Step: 1920 | Position:  722 | Action: Run Jump   | Q-values: [321.70364 337.1645  332.83493 336.5808  354.4203  339.4467 ]
+Step: 1940 | Position:  722 | Action: Run Jump   | Q-values: [327.37097 342.00143 335.3037  342.10498 360.42728 344.0112 ]
+Step: 1960 | Position:  722 | Action: Run Jump   | Q-values: [323.0486  338.8965  331.64374 335.8905  355.4219  339.3453 ]
+Step: 1980 | Position:  722 | Action: Run Jump   | Q-values: [352.95175 355.0109  354.4553  334.84442 368.33136 357.19888]
+Frames written: 2000
+Step: 2000 | Position:  722 | Action: Run Jump   | Q-values: [339.9116  355.09042 350.19595 359.8827  373.23654 358.23175]
+
+Run Complete!
+Total steps: 2005
+Final reward: 267.0
+Final x position: 722
+
+Final statistics:
+Average speed: 0.36 pixels/step
+
+Video saved with 2005 frames
+Gameplay finished.
+
+(torch-rl) D:\GitHub_Web\mario-rlagent>python play.py
+Starting Mario gameplay...
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:555: UserWarning: WARN: The environment SuperMarioBros-1-1-v0 is out of date. You should consider upgrading to version `v3`.
+  logger.warn(
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:627: UserWarning: WARN: The environment creator metadata doesn't include `render_modes`, contains: ['render.modes', 'video.frames_per_second']
+  logger.warn(
+Using device: cuda
+Successfully loaded model weights
+
+Starting Mario's Run
+Waiting for game window to initialize...
+Initialization attempt 1/5...
+Window found!
+
+Initializing video capture...
+Captured frame dimensions: 256x240
+Successfully initialized video recording to: gameplay_videos\mario_gameplay_20241117_140049.mp4
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\utils\passive_env_checker.py:233: DeprecationWarning: `np.bool8` is a deprecated alias for `np.bool_`.  (Deprecated NumPy 1.24)
+  if not isinstance(terminated, (bool, np.bool8)):
+Step:   20 | Position:  226 | Action: Walk Right | Q-values: [640.3591  645.67755 640.5391  639.1943  635.3655  634.0672 ]
+Step:   40 | Position:  365 | Action: Run Right  | Q-values: [648.73035 647.37036 662.383   659.49164 654.27783 643.1191 ]
+Step:   60 | Position:  494 | Action: Walk Right | Q-values: [637.5444  641.47815 639.0094  631.28314 636.874   639.3031 ]
+Step:   80 | Position:  594 | Action: Walk Right | Q-values: [473.7656  479.92627 473.54797 477.7938  471.1742  478.0366 ]
+Frames written: 100
+Step:  100 | Position:  661 | Action: Run Right  | Q-values: [512.94824 480.83368 530.03625 486.99722 495.89072 505.85046]
+Step:  120 | Position:  722 | Action: Walk Jump  | Q-values: [499.35815 493.62912 488.50067 503.48077 497.4546  486.99777]
+Step:  140 | Position:  722 | Action: Walk Jump  | Q-values: [454.8704  457.2435  451.89816 459.88867 452.49307 447.6779 ]
+
+Run Complete!
+Total steps: 150
+Final reward: 637.0
+Final x position: 722
+
+Final statistics:
+Average speed: 4.81 pixels/step
+
+Video saved with 150 frames
+Gameplay finished.
+
+(torch-rl) D:\GitHub_Web\mario-rlagent>python play.py
+Starting Mario gameplay...
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:555: UserWarning: WARN: The environment SuperMarioBros-1-1-v0 is out of date. You should consider upgrading to version `v3`.
+  logger.warn(
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:627: UserWarning: WARN: The environment creator metadata doesn't include `render_modes`, contains: ['render.modes', 'video.frames_per_second']
+  logger.warn(
+Using device: cuda
+Successfully loaded model weights
+
+Starting Mario's Run
+Waiting for game window to initialize...
+Initialization attempt 1/5...
+Window found!
+
+Initializing video capture...
+Captured frame dimensions: 256x240
+Successfully initialized video recording to: gameplay_videos\mario_gameplay_20241117_140120.mp4
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\utils\passive_env_checker.py:233: DeprecationWarning: `np.bool8` is a deprecated alias for `np.bool_`.  (Deprecated NumPy 1.24)
+  if not isinstance(terminated, (bool, np.bool8)):
+Step:   20 | Position:  226 | Action: Walk Right | Q-values: [640.3591  645.67755 640.5391  639.1943  635.3655  634.0672 ]
+Step:   40 | Position:  365 | Action: Run Right  | Q-values: [648.73035 647.37036 662.383   659.49164 654.27783 643.1191 ]
+Step:   60 | Position:  494 | Action: Walk Right | Q-values: [637.5444  641.47815 639.0094  631.28314 636.874   639.3031 ]
+Step:   80 | Position:  594 | Action: Walk Right | Q-values: [473.7656  479.92627 473.54797 477.7938  471.1742  478.0366 ]
+Frames written: 100
+Step:  100 | Position:  661 | Action: Run Right  | Q-values: [512.94824 480.83368 530.03625 486.99722 495.89072 505.85046]
+Step:  120 | Position:  722 | Action: Walk Jump  | Q-values: [499.35815 493.62912 488.50067 503.48077 497.4546  486.99777]
+Step:  140 | Position:  722 | Action: Walk Jump  | Q-values: [454.8704  457.2435  451.89816 459.88867 452.49307 447.6779 ]
+
+Run Complete!
+Total steps: 150
+Final reward: 637.0
+Final x position: 722
+
+Final statistics:
+Average speed: 4.81 pixels/step
+
+Video saved with 150 frames
+Gameplay finished.
+
+(torch-rl) D:\GitHub_Web\mario-rlagent>python play.py
+Starting Mario gameplay...
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:555: UserWarning: WARN: The environment SuperMarioBros-1-1-v0 is out of date. You should consider upgrading to version `v3`.
+  logger.warn(
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:627: UserWarning: WARN: The environment creator metadata doesn't include `render_modes`, contains: ['render.modes', 'video.frames_per_second']
+  logger.warn(
+Using device: cuda
+Successfully loaded model weights
+
+Starting Mario's Run
+Waiting for game window to initialize...
+Initialization attempt 1/5...
+Window found!
+
+Initializing video capture...
+Captured frame dimensions: 256x240
+Successfully initialized video recording to: gameplay_videos\mario_gameplay_20241117_140149.mp4
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\utils\passive_env_checker.py:233: DeprecationWarning: `np.bool8` is a deprecated alias for `np.bool_`.  (Deprecated NumPy 1.24)
+  if not isinstance(terminated, (bool, np.bool8)):
+Step:   20 | Position:  237 | Action: Walk Jump  | Q-values: [679.66345 675.93964 680.5308  681.6763  674.92126 679.6077 ]
+Step:   40 | Position:  434 | Action: Run Jump   | Q-values: [620.7821  620.81586 622.31195 613.2712  624.1288  613.4686 ]
+Step:   60 | Position:  625 | Action: Walk Jump  | Q-values: [586.7495  599.60443 599.5262  630.6916  617.35315 619.5505 ]
+Step:   80 | Position:  859 | Action: Run Jump   | Q-values: [801.89966 771.435   804.60504 773.10205 813.46185 798.76355]
+Frames written: 100
+Step:  100 | Position:  898 | Action: Walk Jump  | Q-values: [312.4034  318.95627 296.32333 348.77982 333.28256 294.59906]
+Step:  120 | Position:  898 | Action: Walk Jump  | Q-values: [238.55315 253.1237  232.00363 281.84332 262.52975 233.09276]
+
+Run Complete!
+Total steps: 134
+Final reward: 817.0
+Final x position: 898
+
+Final statistics:
+Average speed: 6.70 pixels/step
+
+Video saved with 134 frames
+Gameplay finished.
+
+(torch-rl) D:\GitHub_Web\mario-rlagent>python play.py
+Starting Mario gameplay...
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:555: UserWarning: WARN: The environment SuperMarioBros-1-1-v0 is out of date. You should consider upgrading to version `v3`.
+  logger.warn(
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:627: UserWarning: WARN: The environment creator metadata doesn't include `render_modes`, contains: ['render.modes', 'video.frames_per_second']
+  logger.warn(
+Using device: cuda
+Successfully loaded model weights
+
+Starting Mario's Run
+Waiting for game window to initialize...
+Initialization attempt 1/5...
+Window found!
+
+Initializing video capture...
+Captured frame dimensions: 256x240
+Successfully initialized video recording to: gameplay_videos\mario_gameplay_20241117_140254.mp4
+C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\utils\passive_env_checker.py:233: DeprecationWarning: `np.bool8` is a deprecated alias for `np.bool_`.  (Deprecated NumPy 1.24)
+  if not isinstance(terminated, (bool, np.bool8)):
+Step:   20 | Position:  230 | Action: Walk Jump  | Q-values: [616.915  619.3655 614.6471 620.4833 619.7392 610.9424]
+
+Run Complete!
+Total steps: 30
+Final reward: 241.0
+Final x position: 303
+
+Final statistics:
+Average speed: 10.10 pixels/step
+
+Video saved with 30 frames
+Gameplay finished.
