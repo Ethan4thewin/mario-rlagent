@@ -190,13 +190,9 @@ class MarioNet(nn.Module):
 def play_trained_mario(checkpoint_path, episodes=1):
     # Define the expanded action space
     MOVEMENT_OPTIONS = [
-        ["NOOP"],
-        ["right"],
-        ["right", "B"],
-        ["right", "A"],
-        ["right", "A", "B"],
-        ["B"]
-    ]
+    ["right"],        # Move right
+    ["right", "A"],   # Jump right
+]
     
     # Set up environment
     env = gym_super_mario_bros.make(

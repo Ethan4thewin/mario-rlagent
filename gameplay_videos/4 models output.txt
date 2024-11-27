@@ -5,20 +5,6 @@ C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.
 C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:627: UserWarning: WARN: The environment creator metadata doesn't include `render_modes`, contains: ['render.modes', 'video.frames_per_second']
   logger.warn(
 Using device: cuda
-Error loading model: Error(s) in loading state_dict for MarioNet:
-        size mismatch for online.9.weight: copying a param with shape torch.Size([2, 512]) from checkpoint, the shape in current model is torch.Size([6, 512]).
-        size mismatch for online.9.bias: copying a param with shape torch.Size([2]) from checkpoint, the shape in current model is torch.Size([6]).
-        size mismatch for target.9.weight: copying a param with shape torch.Size([2, 512]) from checkpoint, the shape in current model is torch.Size([6, 512]).
-        size mismatch for target.9.bias: copying a param with shape torch.Size([2]) from checkpoint, the shape in current model is torch.Size([6]).
-Gameplay finished.
-
-(torch-rl) D:\GitHub_Web\mario-rlagent>python play.py
-Starting Mario gameplay...
-C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:555: UserWarning: WARN: The environment SuperMarioBros-1-1-v0 is out of date. You should consider upgrading to version `v3`.
-  logger.warn(
-C:\Users\Ethan\miniconda3\envs\torch-rl\lib\site-packages\gym\envs\registration.py:627: UserWarning: WARN: The environment creator metadata doesn't include `render_modes`, contains: ['render.modes', 'video.frames_per_second']
-  logger.warn(
-Using device: cuda
 Successfully loaded model weights
 
 Starting Mario's Run
